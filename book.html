@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="veiwport" content="width=device-width,initial-scale=1.0">
+        <title>The books</title>
+    </head>
+    <body>
+        <h1>The booklist</h1>
+        <div id="booklist"></div>
+
+        <script>
+            fetch('book.xml')
+                .then(response =>{
+                    if(!response.ok){
+                        throw new Error('Failed to get the xml file!'+response .status);
+                    }
+                    return response.text();//把响应内容替换成字符串//
+                })
+            .then(xmlText =>{
+                const parser =new DOMParser();
+                const xmlDoc =parser.parseFromString(xmlText,'text/xml');
+            //创建xml解析器并可以用javascript操作//
+            
+            const books=xmlDoc.getElementsByTagName('book');//从xml文件里获取全部<book>
+            const booklist=document.getElementById('booklist');//找到html中显示图书的容器//
+
+            for(let book of books){//遍历每一本书//
+                const id=book.getAttribute('id');
+                const title=book.getElementsByTagName('title')[0].textContent;
+                const author=book.getElementsByTagName('author')[0].textContent;
+                const price=book.getElementsByTagName('price')[0].textContent;
+            
+            
+            const bookElement=document.createElement('div');
+            bookElement.className='book';
+            bookElement.innerHTML=`
+                <h3>${title}</h3>
+                <div class="book-info">ID: ${id}</div>
+                <div class="book-info">author: ${author}</div>
+                <div class="book-info price">price: ¥${price}</div>
+        `;
+        
+            bookList.appendChild(bookElement);
+        }
+    })
+    .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('booklist').innerHTML = '<p>Error loading books: ' + error.message + '</p>';
+                });
+        </script>
+    </body>
+</html>

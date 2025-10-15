@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <book id="1">
+        <title>Math</title>
+        <author>Lily</author>
+        <price>5.0</price>
+    </book>
+
+    <book id="2">
+        <title>English</title>
+        <author>Jack</author>
+        <price>4.5</price>
+    </book>
+
+    <book id="3">
+        <title>Physics</title>
+        <author>Marry</author>
+        <price>6.5</price>
+    </book>
+</catalog>
