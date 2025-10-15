@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Users</title>
+    </head>
+    <body>
+    <h1>用户配置文件</h1>
+    <div id="userProfiles"></div>
+
+    <script>
+        // 使用 Fetch API 获取 JSON 数据
+        fetch('userProfiles.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('获取 JSON 文件失败: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const userProfiles = document.getElementById('userProfiles');
+                
+                // 遍历并显示每个用户
+                data.users.forEach(user => {
+                    const userElement = document.createElement('div');
+                    userElement.className = 'user-profile';
+                    
+                    userElement.innerHTML = `
+                        <div class="user-header">
+                            <h2 class="user-name">${user.lastName}${user.firstName}</h2>
+                            <div class="user-email">📧 ${user.email}</div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <div class="info-title">📅 基本信息</div>
+                            <div class="info-item">🎂 出生日期: ${user.dateOfBirth}</div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <div class="info-title">🏠 地址信息</div>
+                            <div class="info-item">📍 ${user.address.street}, ${user.address.city}, ${user.address.state} ${user.address.zipCode}</div>
+                        </div>
+                        
+                        <div class="info-section">
+                            <div class="info-title">⚙️ 偏好设置</div>
+                            <div class="info-item">
+                                <span class="preference-badge">主题: ${user.preferences.theme}</span>
+                                <span class="preference-badge">语言: ${user.preferences.language}</span>
+                                <span class="preference-badge">通知: ${user.preferences.notifications ? '开启' : '关闭'}</span>
+                                <span class="preference-badge ${user.preferences.subscription ? 'subscription-yes' : 'subscription-no'}">
+                                    订阅: ${user.preferences.subscription ? '是' : '否'}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    userProfiles.appendChild(userElement);
+                });
+            })
+            .catch(err => {
+                console.error('错误:', err);
+                document.getElementById('userProfiles').innerHTML = 
+                    '<p style="color: red;">加载用户数据失败，请检查控制台错误信息。</p>';
+            });
+    </script>
+    </body>
+</html>

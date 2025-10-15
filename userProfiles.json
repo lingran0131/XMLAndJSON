@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "firstName": "张",
+      "lastName": "小明",
+      "email": "zhangxiaoming@email.com",
+      "dateOfBirth": "1990-05-15",
+      "address": {
+        "street": "科技路123号",
+        "city": "北京",
+        "state": "北京市",
+        "zipCode": "100000"
+      },
+      "preferences": {
+        "theme": "dark",
+        "language": "zh-CN",
+        "notifications": true,
+        "subscription": true
+      }
+    },
+    {
+      "firstName": "李",
+      "lastName": "小红",
+      "email": "lixiaohong@email.com",
+      "dateOfBirth": "1988-12-20",
+      "address": {
+        "street": "中山路456号",
+        "city": "上海",
+        "state": "上海市",
+        "zipCode": "200000"
+      },
+      "preferences": {
+        "theme": "light",
+        "language": "en-US",
+        "notifications": false,
+        "subscription": true
+      }
+    },
+    {
+      "firstName": "王",
+      "lastName": "小刚",
+      "email": "wangxiaogang@email.com",
+      "dateOfBirth": "1995-08-03",
+      "address": {
+        "street": "解放路789号",
+        "city": "广州",
+        "state": "广东省",
+        "zipCode": "510000"
+      },
+      "preferences": {
+        "theme": "dark",
+        "language": "zh-CN",
+        "notifications": true,
+        "subscription": false
+      }
+    }
+  ]
+}
